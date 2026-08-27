@@ -20,32 +20,33 @@ export default function AppShell() {
     return <div className="centered-msg">Carregando…</div>;
   }
 
-  if (!clients.length) {
-    return (
-      <div className="centered-msg" style={{ flexDirection: 'column', gap: 10, textAlign: 'center', padding: 24 }}>
-        <div>Nenhum cliente cadastrado ainda para o seu usuário.</div>
-        {role === 'admin' ? (
-          <div style={{ fontSize: 13 }}>Vá em Administração → Clientes para criar o primeiro.</div>
-        ) : (
-          <div style={{ fontSize: 13 }}>Peça para um admin te dar acesso a um cliente.</div>
-        )}
-      </div>
-    );
-  }
+  // Sem nenhum cliente cadastrado ainda: admin não pode ficar sem saída (sem
+  // sidebar não tem como chegar em Administração), então força a tela de
+  // administração até existir pelo menos um cliente. Quem não é admin só vê
+  // um aviso — mas ainda dentro do shell, com acesso ao "Sair".
+  const noClients = !clients.length;
+  const isAdmin = role === 'admin';
+  const effectiveView = noClients && isAdmin ? 'admin' : view;
 
   return (
     <div id="shell-root">
       <Sidebar
-        view={view}
+        view={effectiveView}
         setView={setView}
         activeTeamIds={activeTeamIds}
         setActiveTeamIds={setActiveTeamIds}
         onNewTask={() => { setView((v) => (v === 'admin' ? 'board' : v)); setOpenNewSignal(true); }}
       />
       <div id="main">
-        <Topbar view={view} search={search} setSearch={setSearch} />
+        <Topbar view={effectiveView} search={search} setSearch={setSearch} />
         <div id="content" key={selectedClientId}>
-          {view === 'board' && (
+          {noClients && !isAdmin && (
+            <div className="centered-msg" style={{ flexDirection: 'column', gap: 10, textAlign: 'center', padding: 24 }}>
+              <div>Nenhum cliente cadastrado ainda para o seu usuário.</div>
+              <div style={{ fontSize: 13 }}>Peça para um admin te dar acesso a um cliente.</div>
+            </div>
+          )}
+          {!noClients && effectiveView === 'board' && (
             <BoardView
               activeTeamIds={activeTeamIds}
               search={search}
@@ -53,7 +54,7 @@ export default function AppShell() {
               onConsumeNewSignal={() => setOpenNewSignal(false)}
             />
           )}
-          {view === 'list' && (
+          {!noClients && effectiveView === 'list' && (
             <ListView
               activeTeamIds={activeTeamIds}
               search={search}
@@ -61,8 +62,8 @@ export default function AppShell() {
               onConsumeNewSignal={() => setOpenNewSignal(false)}
             />
           )}
-          {view === 'overview' && <OverviewView />}
-          {view === 'admin' && <AdminView />}
+          {!noClients && effectiveView === 'overview' && <OverviewView />}
+          {effectiveView === 'admin' && <AdminView />}
         </div>
       </div>
     </div>
