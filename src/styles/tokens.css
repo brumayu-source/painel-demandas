@@ -1,0 +1,115 @@
+:root {
+  color-scheme: light;
+  --bg: #f7f2ea;
+  --surface: #ffffff;
+  --surface-2: #faf5ec;
+  --text-primary: #241417;
+  --text-secondary: #6b5854;
+  --text-muted: #9c8b86;
+  --border: rgba(36, 20, 23, 0.1);
+  --border-strong: rgba(36, 20, 23, 0.18);
+  --accent: #a8192e;
+  --accent-hover: #8a1526;
+  --accent-tint: #fbeecf;
+  --accent-ink: #6e1220;
+  --shadow: 0 1px 2px rgba(36, 20, 23, 0.06), 0 8px 24px -12px rgba(36, 20, 23, 0.18);
+  --good: #0ca30c;
+  --warning: #b8790f;
+  --warning-bg: #fdf1da;
+  --serious: #c1552f;
+  --critical: #d03b3b;
+  --critical-bg: #fbe6e5;
+  --team-1: #2a78d6;
+  --team-2: #eb6834;
+  --team-3: #1baf7a;
+  --team-4: #c98500;
+  --team-5: #e87ba4;
+  --team-6: #008300;
+  --team-7: #4a3aa7;
+  --team-8: #e34948;
+  /* paleta de pessoas — distinta da de times, pro avatar não se confundir com o time.
+     preenchimento sólido + texto branco, então não muda entre claro/escuro. */
+  --person-1: #6c5ce7;
+  --person-2: #00b894;
+  --person-3: #e17055;
+  --person-4: #0984e3;
+  --person-5: #d63384;
+  --person-6: #f0932b;
+  --person-7: #22a6b3;
+  --person-8: #6ab04c;
+  --person-gustavo: #8e44ad; /* roxo fixo, a pedido dele */
+  /* paleta de categorias — distinta das de times e pessoas, pra não confundir
+     as tags no card. preenchimento sólido + texto branco, não muda no escuro. */
+  --category-1: #8e6c88;
+  --category-2: #4a7a96;
+  --category-3: #a68a3f;
+  --category-4: #5c8a6a;
+  --category-5: #9b5c6a;
+  --category-6: #6a6a9b;
+  --category-7: #b56b3f;
+  --category-8: #4f9b8f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --bg: #180f11;
+    --surface: #221619;
+    --surface-2: #2a1b1e;
+    --text-primary: #f7ece8;
+    --text-secondary: #cbb6b1;
+    --text-muted: #94807b;
+    --border: rgba(255, 255, 255, 0.1);
+    --border-strong: rgba(255, 255, 255, 0.18);
+    --accent: #e2596d;
+    --accent-hover: #ec6f81;
+    --accent-tint: #35181d;
+    --accent-ink: #f6c9cf;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px -12px rgba(0, 0, 0, 0.5);
+    --good: #3fc23f;
+    --warning: #fab219;
+    --warning-bg: #2c2410;
+    --serious: #ec835a;
+    --critical: #e66767;
+    --critical-bg: #2c1616;
+    --team-1: #3987e5;
+    --team-2: #d95926;
+    --team-3: #199e70;
+    --team-4: #c98500;
+    --team-5: #d55181;
+    --team-6: #3fc23f;
+    --team-7: #9085e9;
+    --team-8: #e66767;
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #180f11;
+  --surface: #221619;
+  --surface-2: #2a1b1e;
+  --text-primary: #f7ece8;
+  --text-secondary: #cbb6b1;
+  --text-muted: #94807b;
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.18);
+  --accent: #e2596d;
+  --accent-hover: #ec6f81;
+  --accent-tint: #35181d;
+  --accent-ink: #f6c9cf;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px -12px rgba(0, 0, 0, 0.5);
+  --good: #3fc23f;
+  --warning: #fab219;
+  --warning-bg: #2c2410;
+  --serious: #ec835a;
+  --critical: #e66767;
+  --critical-bg: #2c1616;
+  --team-1: #3987e5;
+  --team-2: #d95926;
+  --team-3: #199e70;
+  --team-4: #c98500;
+  --team-5: #d55181;
+  --team-6: #3fc23f;
+  --team-7: #9085e9;
+  --team-8: #e66767;
+}
